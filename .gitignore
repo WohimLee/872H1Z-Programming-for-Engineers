@@ -1,20 +1,20 @@
 
+
+# file
+*.gz
+*.zip
+*.a
+*.so
+test.py
+exec
+.DS_Store
+.~*
 # Folders
 
 __pycache__
 .vscode
 objs
-
-
-# weights
-
-
-# file
-*.gz
-*.zip
-test.py
-exec
-.DS_Store
+lib
 
 
 # Others

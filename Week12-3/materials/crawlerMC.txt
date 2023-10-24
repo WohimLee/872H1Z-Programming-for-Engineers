@@ -1,0 +1,47 @@
+// Crawler program - progresses through memory by copying itself
+// below its current location then passing control to the new copy.
+// Also wipes memory as it goes by writing zeroes above its current
+// location.
+// Needs to be loaded at location 0 and assumes that R1 will be 0
+// when it is started.
+  
+// Register usage:
+// R0 start of next program
+// R1 start of current program
+// R2 length of program
+// R3 current data
+// R4 address of start of loop
+// R5 address of data destination
+// R8 constant 0
+// R9 -length of program
+// RA constant 01
+// RC offset of loop start
+    
+      mov 0 -> R8     // NB no comments so you can figure it out by yourself
+      mov 1 -> RA
+      mov 20 -> R2
+      mov ff -> R9
+      xor R9, R2 -> R9
+      addi R9, RA -> R9 
+      addi R1, R2 -> R0
+      mov loop -> RC
+      addi R1, RC -> R4
+loop: mov [R1] -> R3
+      addi R1, R2 -> R5
+      mov R3 -> [R5]
+      addi R1, R9 -> R5
+      mov R8 -> [R5]
+      addi RA, R1 -> R1
+      jmplt R4, R1
+	
+A8: data 10,10, 00,08  // Data for display
+    data 10,10, 00,08 
+    data 10,10, 00,08
+    data 10,10, 00,08
+    data 10,10, 00,08
+    data 1F,F0, 20,08 
+    data 10,10, 00,08
+    data 10,10, 20,08 
+    data 10,10, 20,08 
+    data 10,10, 20,00 
+    data 10,10, 20,08

@@ -1,0 +1,10 @@
+//Brookshear Machine Emulator by Milan Gritta. Copyright Sussex University
+//Saved to negateIntegersMC.txt.txt on Tue Dec 10 15:38:11 GMT 2019
+00: 1112 // Load reg 1 from memory cell 12
+02: 2301 // Load register 3 with value 01
+04: 22FF // Load register 2 with value FF
+06: 9112 // Put reg 1 XOR reg 2 in reg 1
+08: 5113 // Put reg 1 + reg 3 (ints) in reg 1
+0A: 3112 // Store register 1 in memory cell 12
+0C: C000 // Halt
+12: 3500 // DATA
