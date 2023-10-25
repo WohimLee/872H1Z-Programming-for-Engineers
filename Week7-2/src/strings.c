@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-main() {
+void strings(){
 	// VARIABLES
 	char string1[10] = "C is fun!";
 	char string2[10] = "";

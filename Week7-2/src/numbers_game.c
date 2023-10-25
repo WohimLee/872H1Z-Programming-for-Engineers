@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-main() {
+void numbers_game(){
        const TARGET = 23;  // the target number to be guessed
        int guess;          // the variable for storing the user input
        
@@ -26,5 +26,5 @@ main() {
        // we leave the while block once there was a correct guess
        printf("Congratulations - You guessed correctly!");
        getchar();
-       return 0;
+
 }
