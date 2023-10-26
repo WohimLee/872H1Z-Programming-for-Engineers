@@ -3,8 +3,6 @@
 
 int main(int argc, char** argv)
 {
-    // guessNum();
-    operations();
- 
+    exercise3();
     return 0;
 }

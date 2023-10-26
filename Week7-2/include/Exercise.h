@@ -5,7 +5,8 @@
 #include <stdlib.h>
 
 
-void guessNum()
+void exercise1()
+/* Guess Number */
 {
     const int target = 888;
     int input;
@@ -32,7 +33,7 @@ void guessNum()
     printf("Congratulations! You hit the target: %d!\n", target);
 }
 
-void operations()
+void exercise2()
 {
     int a, b;
     char op;
@@ -45,7 +46,6 @@ void operations()
             break;
         case '-':
             res = a-b;
-
             break;
         case '*':
             res = a*b;
@@ -54,7 +54,26 @@ void operations()
             res = a/b;
             break;
     }
-    printf("%d %c %d", a, op, b);
+    printf("%d %c %d = %.2f\n", a, op, b, res);
+}
+
+
+void exercise3()
+/* 7-2 p54 */
+{
+    int arr[5];
+    int i = 0;
+    while(i<5)
+    {
+        printf("Enter the %d number(): ", i);
+        scanf("%d", &arr[i]);
+        i++;
+    }
+
+    int sum = 0;
+    for(int i=0; i<5; i++)
+        printf("Adding the %d nubmer: %d, result: %d\n", 
+            i, arr[i], sum+=arr[i]);
 }
 
 

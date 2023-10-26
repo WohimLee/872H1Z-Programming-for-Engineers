@@ -14,13 +14,13 @@ linking_options :=
 
 
 # Compile TARGET
-objs/$(TARGET).o : $(MAIN)
+objs/$(TARGET).o : $(MAIN) include/Exercise.h
 	@echo [INFO]: Compile $^ to $@
 	@mkdir -p $(dir $@)
 	@gcc -c $< -o $@ $(compile_options)
 
 
-workspace/$(TARGET) : objs/$(TARGET).o include/Exercise.h
+workspace/$(TARGET) : objs/$(TARGET).o 
 	@echo [INFO]: Linking $^ to $@
 	@mkdir -p $(dir $@)
 	@gcc $^ -o $@ $(linking_options)
