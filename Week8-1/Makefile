@@ -1,5 +1,7 @@
 
-MAIN := Examples/example.c
+# MAIN := Examples/example.c
+MAIN := Examples/test.c
+
 TARGET := $(notdir $(basename $(MAIN)))
 
 c_srcs := $(shell find src -name "*.c")
@@ -16,7 +18,7 @@ linking_options := $(l_options)
 
 
 # Compile TARGET
-objs/$(TARGET).o : $(MAIN) include/Exercise.h
+objs/$(TARGET).o : $(MAIN) include/Exercise.h include/utils.h
 	@echo [INFO]: Compile $^ to $@
 	@mkdir -p $(dir $@)
 	@gcc -c $< -o $@ $(compile_options)

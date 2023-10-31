@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <math.h>
 
+#include "utils.h"
+
 void exercise1()
 {
     const int NUM = 100;
@@ -33,7 +35,7 @@ void exercise1()
 }
 
 
-#define NUM 50
+
 void exercise2()
 {
     long unsigned int fibonacci[NUM] = {1, 1, 0};
@@ -52,30 +54,6 @@ void exercise2()
         printf("%12ld ", fibonacci[i]);       
     }
     printf("\n");
-}
-
-
-int factorial(int x)
-{
-    int res=1;
-    if(x == 0)
-        return 0;
-    else if (x > 0)
-    {
-        for(int i=1; i<=x; i++)
-            res *= i;
-    }
-    else{
-        printf("Negatives don't have a factorial\n");
-        return -1;
-    }
-    
-    return res;
-}
-
-float root(float x)
-{
-    return sqrt(x);
 }
 
 float exercise3()
@@ -103,5 +81,22 @@ float exercise3()
             break;
     }
 }
+
+
+void exercise4()
+{
+    char answers[7][10] = {
+        {'A', 'B', 'A', 'C', 'C', 'D', 'E', 'E', 'A', 'D'},
+        {'D', 'B', 'A', 'B', 'C', 'A', 'E', 'E', 'A', 'D'},
+        {'E', 'D', 'D', 'A', 'D', 'B', 'A', 'E', 'A', 'D'},
+        {'A', 'C', 'B', 'A', 'C', 'B', 'E', 'D', 'A', 'D'},
+        {'A', 'B', 'A', 'A', 'D', 'B', 'A', 'E', 'B', 'D'},
+        {'D', 'C', 'A', 'A', 'D', 'A', 'E', 'E', 'A', 'C'},
+        {'E', 'E', 'A', 'A', 'E', 'E', 'A', 'A', 'A', 'D'}};
+
+    
+}
+
+
 
 #endif // EXERCISE_H

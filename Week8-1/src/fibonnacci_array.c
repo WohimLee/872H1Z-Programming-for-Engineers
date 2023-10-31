@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+
+
 int main(){
 	long i,n=0;
 	double res = 0;
