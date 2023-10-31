@@ -32,30 +32,23 @@ void exercise1()
 }
 
 
+#define NUM 50
 void exercise2()
 {
-    // Fibonacci
-    const int NUM = 50;
-    long unsigned int f0 = 0; // fn-2
-    long unsigned int f1 = 1; // fn-1
-    long unsigned int fn;
-    long unsigned int fibonacci[NUM];
-    fibonacci[0] = f0;
-    fibonacci[1] = f1;
+    long unsigned int fibonacci[NUM] = {1, 1, 0};
 
     for(int i = 2; i < NUM; i++)
     {
-        fn = f0 + f1;
-        fibonacci[i] = fn;
-        printf("fn-1=%ld, fn-2=%ld, fn=%ld\n", f1, f0, fn);
-        f0 = f1; f1 = fn;
+        fibonacci[i] = fibonacci[i-1]+fibonacci[i-2];
+        printf("fn=%ld, fn-1=%ld, fn-2=%ld\n", 
+               fibonacci[i], fibonacci[i-1], fibonacci[i-2]);
     }
 
     for(int i=0; i < NUM; i++)
     {
         if(i%5==0 && i > 0)
             printf("\n");
-        printf("%10ld ", fibonacci[i]);       
+        printf("%12ld ", fibonacci[i]);       
     }
     printf("\n");
 }
