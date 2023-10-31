@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv)
 {
-    exercise2();
+    exercise3();
 
     return 0;
 }

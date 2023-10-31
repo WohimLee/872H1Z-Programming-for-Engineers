@@ -2,6 +2,7 @@
 #define EXERCISE_H
 
 #include <stdio.h>
+#include <math.h>
 
 void exercise1()
 {
@@ -51,6 +52,56 @@ void exercise2()
         printf("%12ld ", fibonacci[i]);       
     }
     printf("\n");
+}
+
+
+int factorial(int x)
+{
+    int res=1;
+    if(x == 0)
+        return 0;
+    else if (x > 0)
+    {
+        for(int i=1; i<=x; i++)
+            res *= i;
+    }
+    else{
+        printf("Negatives don't have a factorial\n");
+        return -1;
+    }
+    
+    return res;
+}
+
+float root(float x)
+{
+    return sqrt(x);
+}
+
+float exercise3()
+{
+    int operand, choice;
+
+    printf("Please enter the integer operand x: ");
+    scanf("%d", &operand);
+
+    printf("Choose one of the following operation(Enter 1 or 2):\n"
+           "    1. Computing the factorial of x;\n"
+           "    2. Computing the square root of x.\n");
+    scanf("%d", &choice);
+    
+    int res=1;
+    switch(choice){
+        case 1:
+            printf("The factorial of %d is res = %d\n", operand, factorial(operand));
+            break;
+        case 2: 
+            printf("The square root of %d is res = %f\n", operand, root(operand));
+            break;
+        default:
+            printf("You should only enter 1 or 2\n");
+            break;
+    }
 }
 
 #endif // EXERCISE_H
