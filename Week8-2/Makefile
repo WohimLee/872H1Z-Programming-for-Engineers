@@ -1,5 +1,5 @@
 
-MAIN := Examples/example.c
+MAIN := Examples/example1.c
 # MAIN := Examples/test.c
 
 TARGET := $(notdir $(basename $(MAIN)))
@@ -18,7 +18,7 @@ linking_options := $(l_options)
 
 
 # Compile TARGET
-objs/$(TARGET).o : $(MAIN) include/Exercise.h include/utils.h
+objs/$(TARGET).o : $(MAIN) 
 	@echo [INFO]: Compile $^ to $@
 	@mkdir -p $(dir $@)
 	@gcc -c $< -o $@ $(compile_options)
