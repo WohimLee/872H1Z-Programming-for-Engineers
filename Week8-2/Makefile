@@ -1,5 +1,5 @@
 
-MAIN := Examples/example1.c
+MAIN := src/robosearch_BFS.c
 # MAIN := Examples/test.c
 
 TARGET := $(notdir $(basename $(MAIN)))

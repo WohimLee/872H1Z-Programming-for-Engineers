@@ -23,6 +23,7 @@ state visited[1000] = {};   // This is the visited states list - we put all stat
 
 // function prototypes
 void addToFringe(char,int,int);
+int addToVisited(state s);
 int equalStates(state,state);
 void generateSuccessors(state,int);
 int hasBeenVisited(state);
@@ -32,7 +33,7 @@ state pop();
 void push(state);
 
 // main program - this is where the search happens
-main() {
+int main() {
     state initialState = {'A',3,-1}; 	// DONE: set initial state to start from
     state s; 					// variable to hold the current state that we want to explore during search
     int parentIndex = 0;			// array index of the current state in the "visited" list
