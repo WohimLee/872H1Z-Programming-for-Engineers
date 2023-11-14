@@ -66,20 +66,20 @@ void processCSVRow(char* line, Building* pBuilding, int vexIdx)
         token = strtok(NULL, ",");
     }
 
-    int arcIdx = 0;
+    int edgeIdx = 0;
     while(token != NULL){
         int tokenNodeIdx = atoi(token);
-        pBuilding->pRoomList[vexIdx].aEdges[arcIdx] = tokenNodeIdx;
-        if(arcIdx == 0){
+        pBuilding->pRoomList[vexIdx].aEdges[edgeIdx] = tokenNodeIdx;
+        if(edgeIdx == 0){
             pBuilding->pRoomList[vexIdx].pFirstEdge = initFirstEdge(tokenNodeIdx);
         }
         else{
-            insertEdge(pBuilding->pRoomList[vexIdx].pFirstEdge, arcIdx, tokenNodeIdx);
+            insertEdge(pBuilding->pRoomList[vexIdx].pFirstEdge, edgeIdx, tokenNodeIdx);
         }
         token = strtok(NULL, ",");
-        arcIdx++;
+        edgeIdx++;
     }
-    pBuilding->pRoomList[vexIdx].nEdgeNum = arcIdx;
+    pBuilding->pRoomList[vexIdx].nEdgeNum = edgeIdx;
 }
 
 // 3. Initialize the first edge of a node
@@ -87,39 +87,39 @@ Action* initFirstEdge(int nAdjNodeIdx)
 {
     Action* pFirstEdge = (Action*)malloc(sizeof(Action));
     if(!pFirstEdge)
-        printf("Init ArcList Failed!\n");
+        printf("Init EdgeList Failed!\n");
     pFirstEdge->nAdjNodeIdx = nAdjNodeIdx;
     pFirstEdge->pNextEdge = NULL;
     return pFirstEdge;
 }
 
 // 4. Insert an edge to the first edge of a node
-void insertEdge(Action* pFirstEdge, int arcIdx, int tokenNodeIdx)
+void insertEdge(Action* pFirstEdge, int edgeIdx, int tokenNodeIdx)
 {
-    // if(arcIdx < 1)
+    // if(edgeIdx < 1)
     //     return;
-    if(arcIdx == 1){
+    if(edgeIdx == 1){
         Action* pTemp = (Action*)malloc(sizeof(Action));
         pTemp->nAdjNodeIdx = tokenNodeIdx;
         pTemp->pNextEdge = pFirstEdge->pNextEdge;
         pFirstEdge->pNextEdge = pTemp;
         return;
     }
-    Action* pCurArc = pFirstEdge;
-    int curArcIdx = 0;
-    while(pCurArc != NULL && curArcIdx < arcIdx-1)
+    Action* pCurEdge = pFirstEdge;
+    int curEdgeIdx = 0;
+    while(pCurEdge != NULL && curEdgeIdx < edgeIdx-1)
     {
-        pCurArc = pCurArc->pNextEdge;
-        curArcIdx++;
+        pCurEdge = pCurEdge->pNextEdge;
+        curEdgeIdx++;
     }
-    if(pCurArc == NULL){
-        printf("It is the last Arc.\n");
+    if(pCurEdge == NULL){
+        printf("It is the last Edge.\n");
         return;
     }
     Action* pTemp = (Action*)malloc(sizeof(Action));
     pTemp->nAdjNodeIdx = tokenNodeIdx;
-    pTemp->pNextEdge = pCurArc->pNextEdge;
-    pCurArc->pNextEdge = pTemp;
+    pTemp->pNextEdge = pCurEdge->pNextEdge;
+    pCurEdge->pNextEdge = pTemp;
 }
 
 
@@ -137,11 +137,11 @@ int getRoomIdx(Building* pBuilding, const char* sState)
 // 6. Successor function to print the adjacent rooms HOOVI can move to from its current position
 void findNextRooms(Room* pRoom)
 {
-    Action* pCurArc = pRoom->pFirstEdge;
-    while(pCurArc)
+    Action* pCurEdge = pRoom->pFirstEdge;
+    while(pCurEdge)
     {
-        printf("%d ", pCurArc->nAdjNodeIdx);
-        pCurArc = pCurArc->pNextEdge;
+        printf("%d ", pCurEdge->nAdjNodeIdx);
+        pCurEdge = pCurEdge->pNextEdge;
     }
     printf("\n\n");
 }

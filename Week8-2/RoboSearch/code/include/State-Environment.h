@@ -13,7 +13,7 @@
 
 typedef struct Edge
 {
-    int nAdjNodeIdx;         // Index of the adjacent node
+    int nAdjNodeIdx;        // Index of the adjacent node
     struct Edge* pNextEdge; // Pointer to the next edge
 }Action;
 
@@ -30,8 +30,8 @@ typedef struct Node
 
 typedef struct ALGraph
 {
-    RoomList pRoomList;
-    int nNodeNum;
+    RoomList pRoomList; // Room list for all the room nodes
+    int nNodeNum;       // Number of rooms
 }Building;
 
 // 1. Initialize the environment

@@ -11,17 +11,7 @@ int main(int argc, char** argv)
     welcomeInformation();
 
     // Choose whether to show detailed informations
-    char yesOrno[5];
-    bool verbose = true;
-    printf("Do you want to show detailed information? (yes or no): ");
-    scanf("%4s", yesOrno);
-    if(strcmp(yesOrno, "yes") == 0)
-        verbose = true;
-    else if (strcmp(yesOrno, "no") == 0)
-        verbose = false;
-    else{
-        printf("Invalid input! Use default setting: yes");
-    }
+    bool verbose = verboseMode();
 
     // Initialize the buiding map
     Building* pBuilding = initializeBuilding(verbose);

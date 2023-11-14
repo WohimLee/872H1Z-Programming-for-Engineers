@@ -10,10 +10,10 @@ int Distance[MAX_ROOM_NUM];
 int RoomFrom[MAX_ROOM_NUM];
 bool visited[MAX_ROOM_NUM];
 
-
+// BFS algorithm implementation
 void breadthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
 {
-    
+    // Initialize 3 arrays: Distance, RoomFrom, visited
     int totalRooms = pBuilding->nNodeNum;
     for(int i=0; i<totalRooms; i++){
         Distance[i] = 999;
@@ -24,6 +24,7 @@ void breadthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
     Distance[startStateIdx] = 0;
     visited[startStateIdx] = true;
 
+    // Initialize queue for BFS
     Queue queue;
     queueInit(&queue);
     queuePush(&queue, startStateIdx);
@@ -32,7 +33,7 @@ void breadthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
         queuePrint(queue);
     }
     
-
+    // Start BFS
     while(!queueEmpty(queue)){
         ElemType popRoomIdx = queuePop(&queue);
 
@@ -46,13 +47,14 @@ void breadthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
         
         if(popRoomIdx == 78)
             break;
-        // The first ArcNode of each Room
-        Action* pCurArc = pBuilding->pRoomList[popRoomIdx].pFirstEdge;
-        // Traverse the ArcNode list of the Room
-        // Push all the possible actions in the queue
-        while(pCurArc){
-            int curVisitRoomIdx = pCurArc->nAdjNodeIdx;
-            if(!visited[curVisitRoomIdx]){
+        // The first Edge of each Room
+        Action* pCurEdge = pBuilding->pRoomList[popRoomIdx].pFirstEdge;
+
+        // Traverse the Edge list of the Room
+        // Push all the possible and unvisited actions in the queue
+        while(pCurEdge){
+            int curVisitRoomIdx = pCurEdge->nAdjNodeIdx;
+            if(!visited[curVisitRoomIdx]){ // If the current node has been visited
                 RoomFrom[curVisitRoomIdx] = popRoomIdx;
                 Distance[curVisitRoomIdx] = Distance[popRoomIdx]+1;
                 visited[curVisitRoomIdx]  = true;
@@ -65,7 +67,7 @@ void breadthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
                     // sleep(1); // you can comment this line if you want
                 }
             }
-            pCurArc = pCurArc->pNextEdge;
+            pCurEdge = pCurEdge->pNextEdge;
         }
     }
     if(verbose){
@@ -77,12 +79,12 @@ void breadthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
                 i, Distance[i], 
                 i, RoomFrom[i]);
     }
-    
 }
 
-
+// DFS algorithm implementation
 void depthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
 {
+    // Initialize 3 arrays: Distance, RoomFrom, visited
     int totalRooms = pBuilding->nNodeNum;
     for(int i=0; i<totalRooms; i++){
         Distance[i] = 999;
@@ -92,6 +94,7 @@ void depthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
     Distance[startStateIdx] = 0;
     visited[startStateIdx] = true;
 
+    // Initialize stack for BFS
     Stack* pStack = stackInit();
     stackPush(pStack, startStateIdx);
 
@@ -116,10 +119,10 @@ void depthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
         if(popRoomIdx == 78)
             break;
         
-        Action* pCurArc = pBuilding->pRoomList[popRoomIdx].pFirstEdge;
-        while(pCurArc)
+        Action* pCurEdge = pBuilding->pRoomList[popRoomIdx].pFirstEdge;
+        while(pCurEdge)
         {
-            int curVisitRoomIdx = pCurArc->nAdjNodeIdx;
+            int curVisitRoomIdx = pCurEdge->nAdjNodeIdx;
             if(!visited[curVisitRoomIdx]){
                 RoomFrom[curVisitRoomIdx] = popRoomIdx;
                 Distance[curVisitRoomIdx] = Distance[popRoomIdx]+1;
@@ -133,17 +136,19 @@ void depthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
                     // sleep(1); // you can comment this line if you want
                 }
             }
-            pCurArc = pCurArc->pNextEdge;
+            pCurEdge = pCurEdge->pNextEdge;
         }
     }
 }
 
+// Display the current location of HOOVI
 void displayCurrentLocation(Building* pBuilding, int popRoomIdx)
 {
     printf("HOOVI is now at %s\n", 
         pBuilding->pRoomList[popRoomIdx].sState);
 }
 
+// Track the path from starting point to charger room
 void tracePathBack(Building* pBuilding, int startRoomIdx)
 {
     int chargerIdx = getRoomIdx(pBuilding, "Charger");
