@@ -1,6 +1,6 @@
 
 MAIN := Examples/main.c
-TARGET := robotSearch
+TARGET := $(notdir $(basename $(MAIN)))
 
 
 h_files := include/State-Environment.h \
@@ -20,7 +20,7 @@ linking_libs := m
 I_options := $(include_dirs:%=-I%)
 l_options := $(linking_libs:%=-l%)
 
-compile_options := -g -O0 -Wextra -std=c99 -gdwarf-2 $(I_options)
+compile_options := -g -O0 -gdwarf-2 $(I_options)
 linking_options := $(l_options)
 
 

@@ -42,7 +42,7 @@ void breadthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
             displayCurrentLocation(pBuilding, popRoomIdx);
             printf("——————————————————————————————————————————————\n");
             queuePrint(queue);
-            sleep(1); // you can comment this line if you want
+            // sleep(1); // you can comment this line if you want
         }
         
         if(popRoomIdx == 78)
@@ -101,7 +101,7 @@ void depthFirstSearch(Building* pBuilding, int startStateIdx, bool verbose)
     if(verbose){
         printf("\nPush %d in stack\n", startStateIdx);
         stackPrint(*pStack);
-        sleep(1); // you can comment this line if you want
+        // sleep(1); // you can comment this line if you want
     }
     
     while(!stackEmpty(*pStack))
